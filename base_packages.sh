@@ -2,6 +2,8 @@
 
 # Script to install base packages and updates to vanilla Pi deployment
 # Assumption is git is already installed :-)
+
+# Update the OS and Install WittyPi2 if not already installed.
 cd ~
 
 if [ -e os_updated ]
@@ -17,7 +19,7 @@ then
   echo "WittyPi installed, skipping..."
 else
   wget http://www.uugear.com/repo/WittyPi2/installWittyPi.sh
-  sudo ./installWittyPi.sh
+  sudo sh ./installWittyPi.sh
   sudo apt-get -y upgrade
   touch witty_installed
 fi
