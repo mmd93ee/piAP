@@ -24,5 +24,8 @@ else
   touch witty_installed
 fi
 
-
-
+if [ -e post_install_reboot ]
+then
+  touch post_install_reboot
+  shutdown -r 0
+fi
