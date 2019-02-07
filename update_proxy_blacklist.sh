@@ -12,7 +12,7 @@ fi
 wget http://dsi.ut-capitole.fr/blacklists/download/blacklists.tar.gz
 tar -zxvf blacklists.tar.gz
 rm blacklists.tar.gz
-mv blacklists/* /var/lib/squidguard/db/blacklists/
+mv -fv ./blacklists/* /var/lib/squidguard/db/blacklists/
 
 # Apply new files
 sudo squidGuard -C all
