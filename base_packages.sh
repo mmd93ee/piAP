@@ -8,7 +8,7 @@ cd ~
 
 if [ -e os_updated ]
 then
-  echo "Initial OS Update Completed"
+  echo "Initial OS update completed, skipping..."
 else
   sudo apt-get - yupdate; sudo apt-get -y upgrade
   touch os_updated
