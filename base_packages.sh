@@ -26,6 +26,8 @@ fi
 
 if [ -e post_install_reboot ]
 then
+  echo "Post install reboot occured, skipping another one..."
+else
   touch post_install_reboot
   shutdown -r 0
 fi
