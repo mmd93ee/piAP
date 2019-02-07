@@ -8,7 +8,7 @@ if [ -e os_updated ]
 then
   echo "Initial OS Update Completed"
 else
-  sudo apt-get update; sudo apt-get upgrade
+  sudo apt-get - yupdate; sudo apt-get -y upgrade
   touch os_updated
 fi
 
@@ -18,6 +18,7 @@ then
 else
   wget http://www.uugear.com/repo/WittyPi2/installWittyPi.sh
   sudo ./installWittyPi.sh
+  sudo apt-get -y upgrade
   touch witty_installed
 fi
 
