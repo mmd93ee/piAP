@@ -14,6 +14,8 @@ then
 else
   wget http://www.uugear.com/repo/WittyPi2/installWittyPi.sh
   sudo ./installWittyPi.sh
+  cd ~
+  touch witty_installed
 fi
 
 
