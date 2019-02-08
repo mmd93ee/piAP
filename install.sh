@@ -5,7 +5,13 @@
 
 # Update the OS and Install WittyPi2 and other base packages if not already installed.
 cd ~
-mkdir status
+
+if [ -e ./status ]
+then
+  echo "Status folder exists, ignoring creating a new one..."
+else
+  mkdir status
+fi
 
 if [ -e ./status/os_updated ]
 then
