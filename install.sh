@@ -34,6 +34,18 @@ else
   shutdown -r 0
 fi
 
+# Have we built Squid yet?
+if [ -e ./status/proxy_installed ]
+then
+  echo "SquidGuard, nginx and Calamaris installed, skipping..."
+else
+  sudo apt-get install -y squid squidguard calamaris nginx openssl libssl-dev
+
+  # Do not build squid - takes FOREVER
+  # ./squid_build/build_squid.sh
+  touch ./status/proxy_installed
+fi
+
 # Install latest nginx, squid and calamaris configurations
 echo "Updating nginx, calamaris and squid configuration..."
 ./piproxy/proxy_config/update_proxy_services.sh
@@ -41,17 +53,5 @@ echo "Updating nginx, calamaris and squid configuration..."
 # Re-apply blacklists
 echo "Updating blacklist of websites..."
 ./piproxy/proxy_config/update_proxy_blacklist.sh
-
-# Have we built Squid yet?
-if [ -e ./status/proxy_installed ]
-then
-  echo "SquidGuard, nginx and Calamaris installed, skipping..."
-else
-  sudo apt-get install -y squidguard calamaris nginx openssl libssl-dev
-  ./squid_build/build_squid.sh
-  touch ./status/proxy_installed
-  shutdown -r 0
-fi
-
 
 
