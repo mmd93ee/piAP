@@ -1,0 +1,13 @@
+--- rules	2016-10-29 17:13:00.000000000 -0400
++++ rules.new	2016-11-23 08:51:24.852029336 -0500
+@@ -39,7 +39,9 @@
+ 		--enable-esi \
+ 		--enable-icmp \
+ 		--enable-zph-qos \
+-		--enable-ecap \
++		--enable-ssl \
++		--enable-ssl-crtd \
++		--with-openssl \
+ 		--disable-translation \
+ 		--with-swapdir=/var/spool/squid \
+ 		--with-logdir=/var/log/squid \
