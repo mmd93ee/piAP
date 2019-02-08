@@ -15,6 +15,8 @@ pushd build/squid3
 # Download and build
 apt-get build-dep squid3
 apt-get source squid3
+
+cd build/squid3/squid3-3.5.23
 ./configure --enable-esi \
  		--enable-icmp \
  		--enable-zph-qos \
