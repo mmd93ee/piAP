@@ -41,7 +41,7 @@ then
 else
   sudo apt-get install -y squid squidguard calamaris nginx
 
-  # Do not build squid - takes FOREVER
+  # Do not build squid - see README
   # ./squid_build/build_squid.sh
   touch ./status/proxy_installed
 fi
