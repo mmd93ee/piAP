@@ -22,6 +22,6 @@ if [ -e ./status/network_updated ]
 then
     echo "No need to update with so many examples around..."
 else
-    sudo cat /etc/dhcpcd.conf, ./piproxy/network_config/network_config > /etc/dhcpcd.conf
+    sudo cat /etc/dhcpcd.conf ./piproxy/network_config/network_config > /etc/dhcpcd.conf
     touch ./status/network_updated
 fi
