@@ -3,7 +3,7 @@
 # Drop squid3 build folder
 if [ -e build/squid3 ]
 then
-  rm -R build/squid3
+  sudo rm -R build/squid3
 fi
 
 # We will be working in a subfolder make it
@@ -19,8 +19,8 @@ sudo apt-get -y build-dep squid3
 sudo apt-get -y source squid3
 
 sudo chown -R _apt ./*
-
 cd squid3-3*
+
 ./configure --enable-esi \
  		--enable-icmp \
  		--enable-zph-qos \
