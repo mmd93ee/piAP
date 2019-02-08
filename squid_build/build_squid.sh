@@ -18,6 +18,8 @@ sudo apt-get update
 sudo apt-get -y build-dep squid3
 sudo apt-get -y source squid3
 
+sudo chown -R _apt ./*
+
 cd squid3-3*
 ./configure --enable-esi \
  		--enable-icmp \

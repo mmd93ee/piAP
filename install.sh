@@ -45,9 +45,9 @@ fi
 
 # Install latest nginx, squid and calamaris configurations
 echo "Updating nginx, calamaris and squid configuration..."
-./piproxy/update_proxy_services.sh
+./piproxy/proxy_config/update_proxy_services.sh
 
 # Apply or Reapplying all configuration settings
 echo "Updating blacklist of websites..."
-./piproxy/update_proxy_blacklist.sh
+./piproxy/proxy_config/update_proxy_blacklist.sh
 
