@@ -11,6 +11,7 @@ if [ -e ./status/os_updated ]
 then
   echo "Initial OS update completed, skipping..."
 else
+  sudo sed -i -e 's/# deb-src/deb-src/' /etc/apt/sources.list
   sudo apt-get - yupdate; sudo apt-get -y upgrade
   touch ./status/os_updated
 fi
