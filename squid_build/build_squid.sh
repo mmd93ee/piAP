@@ -18,7 +18,10 @@ sudo apt-get update
 apt-get -y build-dep squid3
 apt-get -y source squid3
 
-sudo chown -R _apt ./*
+# Reset the sources.list
+sudo sed -i -e 's/deb-src /#deb-src /' /etc/apt/sources.list
+sudo apt-get update
+
 cd squid3-3*
 
 ./configure --enable-esi \
