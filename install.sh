@@ -27,7 +27,7 @@ fi
 
 if [ -e ./status/post_install_reboot ]
 then
-  echo "Post install reboot occured, skipping another one..."
+  echo "Post install reboot occurred, skipping another one..."
 else
   touch ./status/post_install_reboot
   wait
@@ -47,9 +47,11 @@ if [ -e ./status/proxy_installed ]
 then
   echo "SquidGuard, nginx and Calamaris installed, skipping..."
 else
-  #./squid_build/build_squid.sh
   sudo apt-get install -y squidguard calamaris nginx openssl libssl-dev
+  ./squid_build/build_squid.sh
   touch ./status/proxy_installed
+  shutdown -r 0
 fi
+
 
 

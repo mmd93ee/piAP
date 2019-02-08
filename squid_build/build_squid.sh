@@ -32,6 +32,7 @@ patch ./debian/control < ~/piproxy/squid_build/control.patch
 sudo ./configure
 sudo make
 sudo make install
+sudo make clean
 
 # Return to home
 popd
