@@ -1,34 +1,33 @@
 #!/usr/bin/env bash
 
-# drop squid3 build folder
+# Drop squid3 build folder
 rm -R build/squid3
 
-# we will be working in a subfolder make it
+# We will be working in a subfolder make it
 mkdir -p build/squid3
 
-# copy the patches to the working folder
+# Copy the patches to the working folder
 cp rules.patch build/squid3/rules.patch
 cp control.patch build/squid3/control.patch
 
-# decend into working directory
+# Descend into working directory
 pushd build/squid3
 
-# get squid3 from debian stretch
-wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5+deb9u1.dsc
-wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23.orig.tar.gz
-wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5.debian.tar.xz
+# Download and build
+apt-get build-dep squid3
+apt-get source squid3
+./configure --enable-esi \
+ 		--enable-icmp \
+ 		--enable-zph-qos \
+		--enable-ecap \
+		--enable-ssl \
+		--enable-ssl-crtd \
+		--with-openssl \
+ 		--disable-translation \
+ 		--with-swapdir=/var/spool/squid \
+ 		--with-logdir=/var/log/squid
+make & make install
 
-# unpack the source package
-dpkg-source -x squid3_3.5.23-5+deb9u1.dsc
-
-# modify configure options in debian/rules, add --enable-ssl --enable-ssl-crtd
-patch squid3-3.5.23/debian/rules < rules.patch
-
-# modify control file, drop explicitly specified debhelper version
-patch squid3-3.5.23/debian/control < control.patch
-
-# build the package
-cd squid3-3.5.23 && dpkg-buildpackage -rfakeroot -b
-
-# and revert
+# Return to home
 popd
+
