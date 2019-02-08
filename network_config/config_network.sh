@@ -18,4 +18,10 @@ sudo cp -f ./piproxy/network_config/resolv.conf /etc/resolv.conf
 # Copy the blacklist updater to cron.daily
 sudo cp -f ./piproxy/proxy_config/update_proxy_services.sh /etc/cron.daily/
 
-
+if [ -e ./status/network_updated ]
+then
+    echo "Tied out..."
+else
+    cat /etc/dhcpcd.conf, ./piproxy/network_config/network_config > /etc/dhcpcd.conf
+    touch ./status/network_updated
+fi
