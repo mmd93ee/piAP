@@ -13,9 +13,8 @@ mkdir -p build/squid3
 pushd build/squid3
 
 # Download and build
-sudo apt-get openssl libssl-dev
-apt-get build-dep squid3
-apt-get source squid3
+sudo apt-get build-dep squid3
+sudo apt-get source squid3
 
 cd squid3-3*
 ./configure --enable-esi \

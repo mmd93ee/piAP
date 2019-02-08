@@ -40,7 +40,7 @@ then
   echo "SquidGuard, nginx and Calamaris installed, skipping..."
 else
   #./squid_build/build_squid.sh
-  sudo apt-get install -y squidguard calamaris nginx openssl
+  sudo apt-get install -y squidguard calamaris nginx openssl libssl-dev
   touch ./status/proxy_installed
 fi
 
