@@ -21,5 +21,5 @@ rm blacklists.tar.gz
 sudo mv -fv ./blacklists /var/lib/squidguard/db/
 
 # Apply new files
-sudo squidGuard -d -b -t -C all
+sudo squidGuard -d -b -P -C all
 sudo chown -R proxy:proxy /var/lib/squidguard/db/
