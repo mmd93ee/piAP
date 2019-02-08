@@ -21,19 +21,16 @@ apt-get -y source squid3
 # Reset the sources.list
 sudo sed -i -e 's/deb-src /#deb-src /' /etc/apt/sources.list
 sudo apt-get update
-
 cd squid3-3*
 
-./configure --enable-esi \
- 		--enable-icmp \
- 		--enable-zph-qos \
-		--enable-ecap \
-		--enable-ssl \
-		--enable-ssl-crtd \
- 		--disable-translation \
- 		--with-swapdir=/var/spool/squid \
- 		--with-logdir=/var/log/squid
-make & make install
+# modify configure options in debian/rules, add --enable-ssl --enable-ssl-crtd
+patch ./debian/rules < ~/piproxy/squid_build/rules.patch
+
+# modify control file, drop explicitly specified debhelper version
+patch ./debian/control < ~/piproxy/squid_build/control.patch
+
+sudo ./configure
+sudo make & sudo make install
 
 # Return to home
 popd
