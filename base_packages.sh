@@ -39,7 +39,7 @@ if [ -e ./status/proxy_installed ]
 then
   echo "SquidGuard, nginx and Calamaris installed, skipping..."
 else
-  ./squid_build/build_squid.sh
+  #./squid_build/build_squid.sh
   sudo apt-get install -y squidguard calamaris nginx openssl
   touch ./status/proxy_installed
 fi
