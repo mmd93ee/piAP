@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+cd ~
 
 # Proxy .pac file
 sudo cp -f ./piproxy/proxy_config/proxy.pac /usr/share/nginx/html/proxy.pac
