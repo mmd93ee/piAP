@@ -60,4 +60,8 @@ echo "Updating nginx, calamaris and squid configuration..."
 echo "Updating blacklist of websites..."
 ./piproxy/proxy_config/update_proxy_blacklist.sh
 
+# Update network settings
+echo "Network configuration..."
+./piproxy/network_config/config_network.sh
+
 
