@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
 # Drop squid3 build folder
-rm -R build/squid3
+if [ -e build/squid3 ]
+then
+  rm -R build/squid3
+fi
 
 # We will be working in a subfolder make it
 mkdir -p build/squid3
-
-# Copy the patches to the working folder
-cp rules.patch build/squid3/rules.patch
-cp control.patch build/squid3/control.patch
 
 # Descend into working directory
 pushd build/squid3
