@@ -19,7 +19,7 @@ wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23.orig.tar.gz
 wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5.debian.tar.xz
 
 # unpack the source package
-dpkg-source -x squid3_3.5.23-5.dsc
+dpkg-source -x squid3_3.5.23-5+deb9u1.dsc
 
 # modify configure options in debian/rules, add --enable-ssl --enable-ssl-crtd
 patch squid3-3.5.23/debian/rules < rules.patch
