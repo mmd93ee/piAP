@@ -14,7 +14,7 @@ cp control.patch build/squid3/control.patch
 pushd build/squid3
 
 # get squid3 from debian stretch
-wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5.dsc
+wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5+deb9u1.dsc
 wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23.orig.tar.gz
 wget http://http.debian.net/debian/pool/main/s/squid3/squid3_3.5.23-5.debian.tar.xz
 
