@@ -34,6 +34,15 @@ else
   shutdown -r 0
 fi
 
+# Install latest nginx, squid and calamaris configurations
+echo "Updating nginx, calamaris and squid configuration..."
+./piproxy/proxy_config/update_proxy_services.sh
+
+# Re-apply blacklists
+echo "Updating blacklist of websites..."
+./piproxy/proxy_config/update_proxy_blacklist.sh
+
+# Have we built Squid yet?
 if [ -e ./status/proxy_installed ]
 then
   echo "SquidGuard, nginx and Calamaris installed, skipping..."
@@ -43,11 +52,4 @@ else
   touch ./status/proxy_installed
 fi
 
-# Install latest nginx, squid and calamaris configurations
-echo "Updating nginx, calamaris and squid configuration..."
-./piproxy/proxy_config/update_proxy_services.sh
-
-# Apply or Reapplying all configuration settings
-echo "Updating blacklist of websites..."
-./piproxy/proxy_config/update_proxy_blacklist.sh
 
