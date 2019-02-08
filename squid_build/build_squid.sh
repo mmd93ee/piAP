@@ -14,6 +14,7 @@ pushd build/squid3
 
 # Add sources, download and build
 sudo sed -i -e 's/#deb-src/deb-src/' /etc/apt/sources.list
+sudo apt-get update
 sudo apt-get build-dep squid3
 sudo apt-get source squid3
 
