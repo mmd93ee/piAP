@@ -24,7 +24,6 @@ cd squid3-3*
 		--enable-ecap \
 		--enable-ssl \
 		--enable-ssl-crtd \
-		--with-openssl \
  		--disable-translation \
  		--with-swapdir=/var/spool/squid \
  		--with-logdir=/var/log/squid
