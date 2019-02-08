@@ -30,8 +30,8 @@ patch ./debian/rules < ~/piproxy/squid_build/rules.patch
 patch ./debian/control < ~/piproxy/squid_build/control.patch
 
 sudo ./configure
-sudo make & sudo make install
+sudo make
+sudo make install
 
 # Return to home
 popd
-
