@@ -6,7 +6,7 @@ sudo chmod 0755 /usr/share/nginx/html/proxy.pac
 
 # Squid Proxy and Guard Config File
 sudo cp -f ./piproxy/proxy_config/squid.conf /etc/squid/squid.conf
-sudo cp -f ./piproxy/proxy_config/squidguard.conf /etc/squidguard/squidguard.conf
+sudo cp -f ./piproxy/proxy_config/squidGuard.conf /etc/squidguard/squidGuard.conf
 
 # Update squidguard post updates
 sudo squidGuard -d -b -P -C all
