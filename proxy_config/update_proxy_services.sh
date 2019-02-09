@@ -24,8 +24,8 @@ fi
 # nginx Config File
 echo "Updating nginx config file amd adding lightsquid..."
 sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
-sudo cp -f ./piproy/proxy_config/lightsquid /etc/nginx/sites-enabled/
-sudo cp -f ./piproy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
+sudo cp -f ./piproxy/proxy_config/lightsquid /etc/nginx/sites-enabled/
+sudo cp -f ./piproxy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
 
 # LightSquid installation
 
