@@ -45,7 +45,7 @@ if [ -e ./status/proxy_installed ]
 then
   echo "SquidGuard, nginx and Calamaris installed, skipping..."
 else
-  sudo apt-get install -y squid squidguard calamaris nginx
+  sudo apt-get install -y squid squidguard lightsquid nginx
 
   # Do not build squid - see README
   # ./squid_build/build_squid.sh
