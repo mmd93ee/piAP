@@ -22,12 +22,12 @@ else
 fi
 
 # nginx Config File
-echo "Updating nginx config file amd adding lightsquid..."
+echo "Updating nginx config file..."
 sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
-sudo cp -f ./piproxy/proxy_config/lightsquid /etc/nginx/sites-enabled/
-sudo cp -f ./piproxy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
 
-# LightSquid installation
+# DEPRECTAED - LightSquid installation
+#sudo cp -f ./piproxy/proxy_config/lightsquid /etc/nginx/sites-enabled/
+#sudo cp -f ./piproxy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
 
 
 # Fix file permissions

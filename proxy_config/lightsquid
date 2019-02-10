@@ -1,7 +1,16 @@
-<Location "/lightsquid/">
+server {
+    listen   81;
 
-    Options +ExecCGI
-    AddHandler cgi-script .cgi .pl
-    Require local
-    Require ip 192.168.0.0/24
+    location / {
+    root   /usr/share/lightsquid;
+    index  index.html index.htm;
+    }
 
+    location ~ \.pl$ {
+    gzip off;
+    include /etc/nginx/fastcgi_params;
+    fastcgi_pass  127.0.0.1:8999;
+    fastcgi_index index.pl;
+    # fastcgi_param  SCRIPT_FILENAME  /srv/www/www.example.com/public_html$fastcgi_script_name;
+    }
+}
