@@ -29,6 +29,8 @@ sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
 #sudo cp -f ./piproxy/proxy_config/lightsquid /etc/nginx/sites-enabled/
 #sudo cp -f ./piproxy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
 
+# goaccess setup
+# Format string goaccess -f /var/log/squid/access.log --log-format='%h %^[%d:%t %^] "%r" %s %b "%R" "%u"' --time-format='%T' --date-format='%d/%b/%Y'
 
 # Fix file permissions
 sudo chmod 0755 /var/www/html/proxy.pac
