@@ -8,6 +8,6 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
  
 // DEFAULT RULE: All other traffic, use below proxy.
-    return "PROXY 192.168.0.99:3128;
+    return "PROXY 192.168.0.99:3128";
  
 }
