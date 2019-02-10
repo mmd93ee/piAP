@@ -37,4 +37,5 @@ sudo chmod 0755 /var/www/html/proxy.pac
 sudo chmod 0755 /var/www/html/block.html
 
 # Copy the blacklist updater to cron.daily
-sudo cp -f ./piproxy/proxy_config/update_proxy_services.sh /etc/cron.daily/
+echo "Updating cron.daily with proxy update script..."
+sudo cp -f ./piproxy/proxy_config/update_proxy_blacklist.sh /etc/cron.daily/
