@@ -35,3 +35,6 @@ sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
 # Fix file permissions
 sudo chmod 0755 /var/www/html/proxy.pac
 sudo chmod 0755 /var/www/html/block.html
+
+# Copy the blacklist updater to cron.daily
+sudo cp -f ./piproxy/proxy_config/update_proxy_services.sh /etc/cron.daily/
