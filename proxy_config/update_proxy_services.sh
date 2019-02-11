@@ -6,6 +6,8 @@ echo "Updating pac, mime.types and block files..."
 sudo cp -f ./piproxy/proxy_config/mime.types /etc/nginx/
 sudo cp -f ./piproxy/proxy_config/proxy.pac /var/www/html/proxy.pac
 sudo cp -f ./piproxy/proxy_config/block.html /var/www/html/block.html
+sudo cp -f ./piproxy/proxy_config/squidGuard.conf /etc/squidguard/squidGuard.conf
+sudo cp -f ./piproxy/proxy_config/squid.conf /etc/squid/squid.conf
 
 # Squid Proxy Config File
 sudo cp -f ./piproxy/proxy_config/squid.conf /etc/squid/squid.conf
@@ -15,7 +17,6 @@ if [ -e ./status/squidguard_updated ]
 then
   echo "SquidGuard update not needed, skipping..."
 else
-  sudo cp -f ./piproxy/proxy_config/squidGuard.conf /etc/squidguard/squidGuard.conf
   sudo squidGuard -d -b -P -C all
   sudo chown -R proxy:proxy /var/lib/squidguard/db/
   touch ./status/squidguard_updated
