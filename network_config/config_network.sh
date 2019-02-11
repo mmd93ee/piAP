@@ -18,7 +18,7 @@ sudo cp -f ./piproxy/network_config/resolv.conf /etc/resolv.conf
 
 if [ -e ./status/network_updated ]
 then
-    echo "No need to update with so many examples around..."
+    echo "No need to update network at the moment..."
 else
     sudo cat /etc/dhcpcd.conf ./piproxy/network_config/network_config > /etc/dhcpcd.conf
     touch ./status/network_updated
