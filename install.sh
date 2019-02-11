@@ -31,16 +31,6 @@ else
   touch ./status/witty_installed
 fi
 
-if [ -e ./status/post_install_reboot ]
-then
-  echo "Post install reboot occurred, skipping another one..."
-else
-  touch ./status/post_install_reboot
-  wait
-  shutdown -r 0
-fi
-
-# Have we built Squid yet?
 if [ -e ./status/proxy_software_installed ]
 then
   echo "SquidGuard, nginx, calamaris and goaccess installed, skipping..."
@@ -50,11 +40,20 @@ else
   touch ./status/proxy_software_installed
 fi
 
-# Install latest nginx, squid and calamaris configurations
+if [ -e ./status/post_install_reboot ]
+then
+  echo "Post install reboot occurred, skipping another one..."
+else
+  touch ./status/post_install_reboot
+  wait
+  shutdown -r 0
+fi
+
+# Update nginx, squid and calamaris configurations
 echo "Updating nginx, calamaris and squid configuration..."
 ./piproxy/proxy_config/update_proxy_services.sh
 
-# Re-apply blacklists
+# Apply blacklists
 echo "Updating blacklist of websites..."
 ./piproxy/proxy_config/update_proxy_blacklist.sh
 
