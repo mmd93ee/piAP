@@ -29,6 +29,9 @@ sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
 # Fix file permissions
 sudo chmod 0755 /var/www/html/proxy.pac
 sudo chmod 0755 /var/www/html/block.html
+sudo chown proxy:proxy /var/log/squidguard
+sudo chmod 5770 /var/log/squidguard/
+
 
 # Copy the blacklist updater to cron.daily
 echo "Updating cron.daily with proxy update script..."
