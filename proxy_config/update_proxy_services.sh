@@ -2,7 +2,7 @@
 cd ~
 
 # Proxy .pac file, mime.types and block page
-echo "Updating pac, mime.types and block files..."
+echo "Updating pac, mime.types, squid.conf, squidguard.conf  and block files..."
 sudo cp -f ./piproxy/proxy_config/mime.types /etc/nginx/
 sudo cp -f ./piproxy/proxy_config/proxy.pac /var/www/html/proxy.pac
 sudo cp -f ./piproxy/proxy_config/block.html /var/www/html/block.html
