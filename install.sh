@@ -45,6 +45,7 @@ if [ -e ./status/proxy_software_installed ]
 then
   echo "SquidGuard, nginx, calamaris and goaccess installed, skipping..."
 else
+  sudo apt --fix-broken install -y
   sudo apt-get install -y squid squidguard nginx calamaris
   touch ./status/proxy_software_installed
 fi
