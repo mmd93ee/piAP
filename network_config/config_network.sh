@@ -13,7 +13,8 @@ else
   touch ./status/dns_client_installed
 fi
 
-# Update resolv.conf anyway to allow remote fix
+# Update resolv.conf and set static address to eth0
+# anyway to allow remote fix
 sudo cp -f ./piproxy/network_config/resolv.conf /etc/resolv.conf
 
 if [ -e ./status/network_updated ]
