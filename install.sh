@@ -45,13 +45,7 @@ if [ -e ./status/proxy_software_installed ]
 then
   echo "SquidGuard, nginx, calamaris and goaccess installed, skipping..."
 else
-  echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list
-  wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add -
-  sudo apt-get update
-  sudo apt-get install -y squid squidguard nginx calamaris goaccess
-
-  # Do not build squid - see README
-  # ./squid_build/build_squid.sh
+  sudo apt-get install -y squid squidguard nginx calamaris
   touch ./status/proxy_software_installed
 fi
 

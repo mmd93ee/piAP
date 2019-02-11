@@ -25,24 +25,6 @@ fi
 echo "Updating nginx config file..."
 sudo cp -f ./piproxy/proxy_config/nginx.conf /etc/nginx/
 
-# DEPRECATED - LightSquid installation
-#sudo cp -f ./piproxy/proxy_config/lightsquid /etc/nginx/sites-enabled/
-#sudo cp -f ./piproxy/proxy_config/lightsquid.cfg /etc/lightsquid/lightsquid.cfg
-
-# goaccess setup
-# Format string goaccess -f /var/log/squid/access.log --log-format='%h %^[%d:%t %^] "%r" %s %b "%R" "%u"' --time-format='%T' --date-format='%d/%b/%Y'
-echo "Updating sources to include goaccess..>"
-if [ -e ./status/goaccess_source_added ]
-then
-    echo "goaccess latest source added and goaccess installed, skipping..."
-else
-
-    touch ./status/goaccess_source_added
-fi
-
-
-
-
 # Fix file permissions
 sudo chmod 0755 /var/www/html/proxy.pac
 sudo chmod 0755 /var/www/html/block.html
@@ -50,3 +32,14 @@ sudo chmod 0755 /var/www/html/block.html
 # Copy the blacklist updater to cron.daily
 echo "Updating cron.daily with proxy update script..."
 sudo cp -f ./piproxy/proxy_config/update_proxy_blacklist.sh /etc/cron.daily/
+
+# Set up Calamaris and Squid log chopper
+if [ -e /var/lib/calamaris/reports/ ]
+then
+    echo "Calamaris report folder exists, not recreating..."
+else
+    sudo mkdir -p /var/lib/calamaris/reports/daily/previous
+    sudo mkdir -p /var/lib/calamaris/reports/weekly/previous
+    sudo mkdir -p /var/lib/calamaris/reports/monthly/previous
+    sudo mkdir -p /var/lib/calamaris/cache
+fi
