@@ -17,8 +17,8 @@ if [ -e ./status/squidguard_updated ]
 then
   echo "SquidGuard update not needed, skipping..."
 else
-  sudo squidGuard -d -b -P -C all
   sudo chown -R proxy:proxy /var/lib/squidguard/db/
+  sudo squidGuard -d -b -P -C all
   touch ./status/squidguard_updated
 fi
 
