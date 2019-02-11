@@ -33,13 +33,4 @@ sudo chmod 0755 /var/www/html/block.html
 echo "Updating cron.daily with proxy update script..."
 sudo cp -f ./piproxy/proxy_config/update_proxy_blacklist.sh /etc/cron.daily/
 
-# Set up Calamaris and Squid log chopper
-if [ -e /var/lib/calamaris/reports/ ]
-then
-    echo "Calamaris report folder exists, not recreating..."
-else
-    sudo mkdir -p /var/lib/calamaris/reports/daily/previous
-    sudo mkdir -p /var/lib/calamaris/reports/weekly/previous
-    sudo mkdir -p /var/lib/calamaris/reports/monthly/previous
-    sudo mkdir -p /var/lib/calamaris/cache
-fi
+# Set up Calamaris and Squid logs
