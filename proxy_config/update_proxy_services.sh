@@ -20,6 +20,11 @@ if [ -e ./status/squidguard_updated ]
 then
   echo "SquidGuard update not needed, skipping..."
 else
+
+  # Update DB
+  ./piproxy/proxy_config/update_proxy_blacklist.sh
+
+  # Fix permissions and then update DB
   sudo chown proxy:proxy /var/log/squidguard
   sudo chmod 5770 /var/log/squidguard/
   sudo chown -R proxy:proxy /var/lib/squidguard/db/
