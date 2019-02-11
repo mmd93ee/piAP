@@ -277,4 +277,4 @@ fi
 # Copy files to web server
 
 echo "Copying files to webroot"
-sudo cp -R $CURRENT_REPORTS_DIR $FILE_EXPORT_PATH
+sudo cp -R $CURRENT_REPORTS_DIR/* $FILE_EXPORT_PATH
