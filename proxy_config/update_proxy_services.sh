@@ -26,7 +26,7 @@ else
 
   # Fix permissions and then update DB
   sudo chown proxy:proxy /var/log/squidguard
-  sudo chmod 5770 /var/log/squidguard/
+  sudo chmod 0775 /var/log/squidguard/
   sudo chown -R proxy:proxy /var/lib/squidguard/db/
 
   sudo squidGuard -d -b -P -C all
