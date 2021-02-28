@@ -12,6 +12,7 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
   - systemctl stop and then disable systemd-resolved
   - rm /etc/resolv.conf
   - add local nameserver to dnsmasq.conf (server=<name server>)
+  - update /etc/hosts to include 127.0.0.1 to the hostname
   - Reboot
   
 - Install packages:
@@ -47,7 +48,7 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
           gateway4: 192.168.2.1
           mtu: 1500
           nameservers:
-            addresses: [192.168.1.1]
+            addresses: [192.168.1.25]
           parameters:
             stp: true
             forward-delay: 4
