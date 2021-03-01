@@ -36,8 +36,8 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
   - Edit /etc/default/hostapd to use above confifguration by setting DAEMON_CONF="/etc/hostapd/hostapd.conf"
   - Run systemctl unmask then enable hostapd
 
-- Create bridge interface, use to host web server
-  - Do this with netplan by creating /etc/netplan/20-bridges.yaml
+- Create bridge interface, use to host web server and wlan address
+  - br0 by creating /etc/netplan/20-bridges.yaml
     network:
       version: 2
       renderer: networkd
@@ -53,19 +53,54 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
             stp: true
             forward-delay: 4
 
+  - wlan0 by creating /etc/netplan/30-wlan.yaml
+    network:
+    version: 2
+    renderer: networkd
+    ethernets:
+      wlan0:
+        dhcp4: no
+        addresses: [192.168.3.25/24]
+        mtu: 1500
+        nameservers:
+          addresses: [192.168.1.25]
+          
 - Install nginx and gunicorn.
-- In /var/www/html add a .htaccess file and paste in the following;
-  Redirect /library/test/success.html /
-  Redirect /hotspot-detect.html /
-  Redirect /ncsi.txt /
-  Redirect /connecttest.txt /
-  Redirect /fwlink/ /
-  Redirect /generate_204 /r/204
+  - In /var/www/html add a .htaccess file and paste in the following;
+    Redirect /library/test/success.html /
+    Redirect /hotspot-detect.html /
+    Redirect /ncsi.txt /
+    Redirect /connecttest.txt /
+    Redirect /fwlink/ /
+    Redirect /generate_204 /r/204
 
-  RewriteEngine on
-  RewriteCond %{HTTP_USER_AGENT} ^CaptiveNetworkSupport(.*)$ [NC]
-  RewriteRule ^(.*)$ / [L,R=301]
-- Change to only listen on main eth0.  Edit /etc/nginx/sites-enabled/default to include a listen: <address>:<port> line.  Use address for br0.
+    RewriteEngine on
+    RewriteCond %{HTTP_USER_AGENT} ^CaptiveNetworkSupport(.*)$ [NC]
+    RewriteRule ^(.*)$ / [L,R=301]
+
+  - Change to only listen on main eth0.  Edit /etc/nginx/sites-enabled/default to include a listen: <address>:<port> line.  Use address for br0.
+
+- Update dnsmasq (/etc/dnsmasq.conf) to only server DHCP on wlan0
+  interface=wlan0
+  dhcp-range=192.168.3.50,192.168.3.150,255.255.255.0,1h
+  server=192.168.1.1 (for upstream dns)
+  listen-address=127.0.0.1
+  listen-address=192.168.3.25
+  log-queries
+  log-dhcp
+  
+- Update UFW to allow inbound traffic to wlan0
+  - dns and dhcp to wlan0
+    ufw allow in on wlan0 to 192.168.3.25 proto udp port 67
+    ufw allow in on wlan0 to 192.168.3.25 proto tcp port 53
+
+
+
+
+
+
+
+
 
 - NOT SURE IF THIS BIT IS CORRECT
 *nat
