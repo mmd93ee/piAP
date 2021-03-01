@@ -53,3 +53,18 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
             stp: true
             forward-delay: 4
 
+- Install nginx and gunicorn.
+- In /var/www/html add a .htaccess file and paste in the following;
+  Redirect /library/test/success.html /
+  Redirect /hotspot-detect.html /
+  Redirect /ncsi.txt /
+  Redirect /connecttest.txt /
+  Redirect /fwlink/ /
+  Redirect /generate_204 /r/204
+
+  RewriteEngine on
+  RewriteCond %{HTTP_USER_AGENT} ^CaptiveNetworkSupport(.*)$ [NC]
+  RewriteRule ^(.*)$ / [L,R=301]
+- Change to only listen on main eth0.  Edit /etc/nginx/sites-enabled/default to include a listen: <address>:<port> line.  Use address for br0.
+
+- 
