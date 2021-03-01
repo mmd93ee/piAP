@@ -27,7 +27,7 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
   - Identify name of wireless card (if link show)
   - Update /etc/hostapd/hostapd.conf with the following;
     interface=wlan0
-    bridge=br0
+>>    bridge=br0
     ssid=<pick an SSID>
     hw_mode=g
     channel=<pick a number 1-15>
@@ -36,7 +36,7 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
   - Edit /etc/default/hostapd to use above confifguration by setting DAEMON_CONF="/etc/hostapd/hostapd.conf"
   - Run systemctl unmask then enable hostapd
 
-- Create bridge interface, use to host web server and wlan address
+>> - Create bridge interface, use to host web server and wlan address
   - br0 by creating /etc/netplan/20-bridges.yaml
     network:
       version: 2
@@ -82,18 +82,20 @@ Build an AP and DNS redirect on a Pi.  Built out from: https://jerryryle.github.
 
 - Update dnsmasq (/etc/dnsmasq.conf) to only server DHCP on wlan0
   interface=wlan0
-  dhcp-range=192.168.3.50,192.168.3.150,255.255.255.0,1h
+  dhcp-range=192.168.2.50,192.168.2.150,255.255.255.0,1h
   server=192.168.1.1 (for upstream dns)
   listen-address=127.0.0.1
-  listen-address=192.168.3.25
+  listen-address=192.168.2.25
   log-queries
   log-dhcp
-  
-- Update UFW to allow inbound traffic to wlan0
-  - dns and dhcp to wlan0
-    ufw allow in on wlan0 to 192.168.3.25 proto udp port 67
-    ufw allow in on wlan0 to 192.168.3.25 proto tcp port 53
 
+- Allow ip forwarding, edit /etc/ufw/sysctl.conf
+>>  net/ipv4/ip_forward=1
+  
+>> - Update UFW to allow inbound traffic to br0
+  - dns and dhcp to wlan0
+    ufw allow in on wlan0 from any port 68 to any port 67 proto udp
+  
 
 
 
